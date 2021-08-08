@@ -7,6 +7,5 @@ public class Main4 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         ArrayList<Integer> arrayList = new ArrayList<>();
-        System.out.println("修改了Main4");
     }
 }
