@@ -1,4 +1,4 @@
 package com.itheima.main;
 
-public class Main6 {
+public class Main7 {
 }
