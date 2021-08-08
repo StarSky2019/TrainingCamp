@@ -10,6 +10,7 @@ public class Main5 {
         System.out.println("请输入一个十进制数：");
         int num = sc.nextInt();
         // 处理特殊情况
+        // 此处修改
         if(num == 0)
             System.out.println(0);
         // 存储十进制数
