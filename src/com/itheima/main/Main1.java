@@ -1,38 +1,36 @@
 package com.itheima.main;
 
-import java.util.*;
+import java.util.Scanner;
+import java.util.Stack;
 
 public class Main1{
     public static void main(String[] args) {
-        List<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.add(5);
-        list.add(4);
-        list.add(7);
-        list.add(3);
-        // 快速排序
-        QuickSort(list, 0, list.size() - 1);
-        System.out.println(list);
-    }
-
-    public static void QuickSort(List<Integer> list, int left, int right)
-    {
-        // 递归终止条件
-        if(left == right)
-            return;
-        int base = list.get(left);
-        while(left < right)
+        Scanner sc = new Scanner(System.in);
+        String str = sc.next();
+        char[] array = str.replace("\"", "").toCharArray();
+        Stack<Character> stack = new Stack<>();
+        for(int i=0; i<array.length; i++)
         {
-            while(list.get(left) < base)
-                left++;
-            while(list.get(right) > base)
-                right--;
-            int tmp = list.get(left);
-            list.set(left, list.get(right));
-            list.set(right, tmp);
+            if(array[i] == '[')
+                stack.push(array[i]);
+            if(array[i] == '{')
+                stack.push(array[i]);
+            if(array[i] == '(')
+                stack.push(array[i]);
+            if(stack.isEmpty())
+            {
+                System.out.println(false);
+                return;
+            }
+            else
+            {
+                char item = stack.pop();
+                if(item != array[i])
+                {
+                    System.out.println(false);
+                    return;
+                }
+            }
         }
-        list.set(left, base);
-        QuickSort(list, left, base);
-        QuickSort(list, base, right);
     }
 }
