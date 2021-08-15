@@ -1,5 +1,7 @@
 package com.itheima.main;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -7,27 +9,38 @@ public class Main1{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String str = sc.next();
-        char[] array = str.replace("\"", "").toCharArray();
-        Stack<Character> stack = new Stack<>();
-        for(int i=0; i<array.length; i++)
+        // 技术点1：去输入的字符串双引号
+        str = str.replace("\"", "");
+        Map<String, Integer> map = new HashMap<>();
+        // 技术点2：使用map保存数据
+        map.put("lower", 0);
+        map.put("upper", 0);
+        map.put("number", 0);
+        map.put("other", 0);
+        for(int i=0; i<str.length(); i++)
         {
-            if(array[i] == '[')
-                stack.push(']');
-            else if(array[i] == '{')
-                stack.push('}');
-            else if(array[i] == '(')
-                stack.push(')');
-            else if(stack.isEmpty() || array[i] != stack.pop())
+            char ch = str.charAt(i);
+            if(ch >= 'a' && ch <= 'z')
             {
-                System.out.println(false);
-                return;
+                map.put("lower", map.get("lower") + 1);
+            }
+            else if(ch >= 'A' && ch <= 'Z')
+            {
+                map.put("upper", map.get("upper") + 1);
+            }
+            else if(ch >= '0' && ch <= '9')
+            {
+                map.put("number", map.get("number") + 1);
+            }
+            else
+            {
+                map.put("other", map.get("other") + 1);
             }
         }
-        if(stack.isEmpty())
+        // 技术点3：遍历打印hashmap
+        for(Map.Entry<String, Integer> entry : map.entrySet())
         {
-            System.out.println(true);
-            return;
+            System.out.println("Key:" + entry.getKey() + " Value: " + entry.getValue());
         }
-        System.out.println(false);
     }
 }
