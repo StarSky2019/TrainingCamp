@@ -4,15 +4,21 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        String s = "Hello World";
-        // split to words by space
-        String[] arr = s.split(" ");
-        StringBuilder sb = new StringBuilder();
-        for (int i = arr.length - 1; i >= 0; --i) {
-            if (!arr[i].equals("")) {
-                sb.append(arr[i]).append(" ");
-            }
+        List<String> arraylist = new ArrayList<>();
+        arraylist.add("中国");
+        arraylist.add("美国");
+        arraylist.add("日本");
+        arraylist.add("法国");
+        arraylist.add("英国");
+        List<String> newarraylist = new ArrayList<>();
+        System.out.println(arraylist);
+        Random random = new Random();
+        for(int j=3; j>=1; j--)
+        {
+            int index = random.nextInt(arraylist.size());
+            newarraylist.add(arraylist.get(index));
+            arraylist.remove(index);
         }
-        System.out.println(sb.substring(0, sb.length() - 1));
+        System.out.println(newarraylist);
     }
 }
